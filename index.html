@@ -1,0 +1,107 @@
+<html>
+    <head>
+        <script src="jumpgame.js"></script>
+        <!--<script src="proxy.js"></script>-->
+        <script src="countWater.js"></script>
+        <script type="module" src="knapSack.js"></script>
+        <script src="uniquePaths.js"></script>
+        <script src="node.js"></script>
+    </head>
+    <body>
+
+    </body>
+    <script>
+
+/*
+        function a() {
+            var arr = [];
+
+            for (let i = 0; i < 5; i++) {
+                arr[i] = function() {
+                    console.log(i);
+                }
+
+                //console.log(arr[i]);
+            }
+
+            return arr;
+        }
+
+        var arr = a();
+        arr[2]();
+
+        var o1 = {
+            foo() {
+                console.log(`o1`);
+            }
+        };
+
+        var o2 = {
+            foo() {
+                super.foo();
+                console.log(`o2`);
+            }
+        }
+
+        Object.setPrototypeOf(o2, o1);
+        console.log(Object.getOwnPropertyNames(o2));
+
+        console.log(Array(10).keys().next());
+
+        //quicksort({a: "3",  b: "4"});
+
+        var Fib = {
+	[Symbol.iterator]() {
+		var n1 = 1, n2 = 1;
+
+		return {
+			// make the iterator an iterable
+			[Symbol.iterator]() { return this; },
+
+			next() {
+				var current = n2;
+				n2 = n1;
+				n1 = n1 + current;
+				return { value: current, done: false };
+			},
+
+			return(v) {
+				console.log(
+					"Fibonacci sequence abandoned."
+				);
+				return { value: v, done: true };
+			}
+		};
+	}
+};
+
+for (var v of Fib) {
+	console.log( v );
+
+	if (v > 50) break;
+}
+
+function *foo() {
+    let b = yield [1,2,3];
+    console.log(b);
+}
+
+var a = foo();
+console.log(a);
+console.log(a.next());
+console.log(a.next(1));*/
+
+//console.log(dpTopDownJumpGame([3, 2, 1, 0, 4]));
+//console.log(countWater([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]));
+//console.log(uniquePaths(7, 3));
+
+var node = new Node(5);
+var node2 = createNode(3);
+//node.value = 2;
+console.log(node);
+console.log(node2);
+var node3 = new NodeNode(3);
+console.log(node3);
+
+
+    </script>
