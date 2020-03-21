@@ -100,8 +100,20 @@ var node2 = createNode(3);
 //node.value = 2;
 console.log(node);
 console.log(node2);
-var node3 = new NodeNode(3);
+var node3 = new NodeNode(2);
+var node4 = new NodeNode('a')
 console.log(node3);
+console.log(node3.getValue());
+console.log(node3.getNext());
+node3.setNext(node4);
+{
+    let node = node3;
+    while(node != undefined) {
+        console.log(node.getValue());
+
+        node = node.getNext();
+    }
+}
 
 
     </script>
