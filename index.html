@@ -6,6 +6,7 @@
         <script type="module" src="knapSack.js"></script>
         <script src="uniquePaths.js"></script>
         <script src="node.js"></script>
+        <script src="linkedList.js"></script>
     </head>
     <body>
 
@@ -109,6 +110,20 @@ node3.setNext(node4);
 {
     let node = node3;
     while(node != undefined) {
+        console.log(node.getValue());
+
+        node = node.getNext();
+    }
+}
+
+//import LinkedListPublic from LinkedListPublic;
+var linkedList = new LinkedListPublic(node3);
+//console.log(`linkedlist ${linkedList.getHead()}`);
+linkedList.append(node4);
+{
+    let node = linkedList.getHead();
+    //console.log(node.getNext().getValue());
+    while(node !== null) {
         console.log(node.getValue());
 
         node = node.getNext();
