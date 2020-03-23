@@ -48,7 +48,7 @@ var NodeNode = (function() {
     }
 
     Node.prototype.getNext = function() {
-        console.log(privateData);
+        //console.log(privateData);
         return privateData.get(this).next;
     }
 

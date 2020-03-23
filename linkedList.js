@@ -48,6 +48,43 @@ var LinkedListPublic = (function() {
         currentLinkedList.head = newNode;
     }
 
+    LinkedList.prototype.delete = function(value) {
+        var currentLinkedList = privateData.get(this);
+
+        if (currentLinkedList.head === null){
+            return;
+        }
+
+        if (currentLinkedList.head.getNext() === null) {
+            currentLinkedList.head = currentLinkedList.tail = null;
+            return;
+        }
+
+        let currentNode = currentLinkedList.head;
+        let nextNode = currentNode;
+        let firstPass = true;
+
+        while(nextNode.getValue() !== value && nextNode.getNext() !== null) {
+            if (firstPass) {
+                nextNode = currentNode.getNext();
+                firstPass = false;
+            } else {
+                currentNode = nextNode;
+                nextNode = nextNode.getNext();
+            }
+        }
+
+        if (nextNode.getValue() === value) {
+            currentNode.setNext(nextNode.getNext());
+            if (nextNode.getNext() === null) {
+                currentLinkedList.tail = currentNode;
+            }
+            if (currentLinkedList.head.getValue() === value) {
+                currentLinkedList.head = currentNode.getNext();
+            }
+        }
+    }
+
     LinkedList.prototype.getHead = function() {
         //console.log(privateData);
         return privateData.get(this).head;

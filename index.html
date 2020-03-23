@@ -121,7 +121,7 @@ console.log('-------');
 var node = new NodeNode("b");
 //console.log(node);
 
-var linkedList = new LinkedListPublic(node);
+/*var linkedList = new LinkedListPublic(node);
 //console.log(JSON.parse(JSON.stringify(linkedList.getHead())));
 //console.log(`linkedlist ${linkedList.getHead()}`);;
 //console.log(linkedList.getHead());
@@ -139,7 +139,32 @@ linkedList.prepend("a");
 
         node = node.getNext();
     }
+}*/
+
+var linkedListDelete = new LinkedListPublic();
+/*linkedListDelete.delete(2);
+linkedListDelete.append(2);
+linkedListDelete.delete(2);*/
+
+/*linkedListDelete.append(2);
+linkedListDelete.append(3);
+linkedListDelete.delete(3);*/
+
+linkedListDelete.append(2);
+linkedListDelete.append(3);
+linkedListDelete.append(4);
+linkedListDelete.append(5);
+linkedListDelete.delete(3);
+
+{
+    let node = linkedListDelete.getHead();
+    while(node !== null) {
+        console.log(node.getValue());
+
+        node = node.getNext();
+    }
 }
+console.log(linkedListDelete.getHead().getValue() + " " +  linkedListDelete.getTail().getValue());
 
 
     </script>
