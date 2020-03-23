@@ -40,6 +40,7 @@ var NodeNode = (function() {
                 value: value,
                 next: null
             });
+        this.descriptor = value;
     }
 
     Node.prototype.getValue = function() {
@@ -47,6 +48,7 @@ var NodeNode = (function() {
     }
 
     Node.prototype.getNext = function() {
+        console.log(privateData);
         return privateData.get(this).next;
     }
 
