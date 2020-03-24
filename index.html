@@ -9,6 +9,7 @@
         <script src="linkedList.js"></script>
         <script src="doublyLinkedList.js"></script>
         <script src="Queue.js"></script>
+        ,<script src="Stack.js"></script>
     </head>
     <body>
 
@@ -168,9 +169,9 @@ linkedListDelete.delete(3);
 }
 console.log(linkedListDelete.getHead().getValue() + " " +  linkedListDelete.getTail().getValue());
 
-var doubleLinkedList = new DoublyLinkedListPublic();
-doubleLinkedList.append("e");
-
+/*var doubleLinkedList = new DoublyLinkedListPublic();
+doubleLinkedList.append("e");*/
+/*
 console.log("---- queue");
 var queue = new QueuePublic();
 queue.enqueue(1);
@@ -182,7 +183,20 @@ console.log(queue.peek().getValue());
 console.log(queue.dequeue());
 console.log(queue.dequeue());
 queue.enqueue(1);
-console.log(queue.isEmpty());
+console.log(queue.isEmpty());*/
+
+console.log("---- stack");
+var stack = new StackPublic();
+stack.push(1);
+console.log(stack.pop());
+console.log(stack.pop());
+stack.push(1);
+stack.push(2);
+console.log(stack.peek().getValue());
+console.log(stack.pop());
+console.log(stack.pop());
+stack.push(1);
+console.log(stack.isEmpty());
 
 
 
