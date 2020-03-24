@@ -8,6 +8,7 @@
         <script src="node.js"></script>
         <script src="linkedList.js"></script>
         <script src="doublyLinkedList.js"></script>
+        <script src="Queue.js"></script>
     </head>
     <body>
 
@@ -169,6 +170,19 @@ console.log(linkedListDelete.getHead().getValue() + " " +  linkedListDelete.getT
 
 var doubleLinkedList = new DoublyLinkedListPublic();
 doubleLinkedList.append("e");
+
+var queue = new QueuePublic();
+queue.push(1);
+console.log(queue.pop());
+console.log(queue.pop());
+queue.push(1);
+queue.push(2);
+console.log(queue.peek().getValue());
+console.log(queue.pop());
+console.log(queue.pop());
+queue.push(1);
+console.log(queue.isEmpty());
+
 
 
     </script>
