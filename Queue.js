@@ -7,8 +7,8 @@ var QueuePublic = (function() {
         });
     }
 
-    Queue.prototype.push = function(value) {
-        privateData.get(this).list.prepend(value);
+    Queue.prototype.enqueue = function(value) {
+        privateData.get(this).list.append(value);
     }
 
     Queue.prototype.peek = function() {
@@ -19,7 +19,7 @@ var QueuePublic = (function() {
         return privateData.get(this).list.getHead() === null ? true : false;
     }
 
-    Queue.prototype.pop = function() {
+    Queue.prototype.dequeue = function() {
         var node = privateData.get(this).list.getHead();
 
         if (node === null) {
