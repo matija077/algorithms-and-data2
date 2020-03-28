@@ -94,6 +94,26 @@ var LinkedListPublic = (function() {
         return privateData.get(this).tail;
     }
 
+    LinkedList.prototype.find = function(value) {
+        var currentLinkedList = privateData.get(this);
+
+        if (currentLinkedList.head === null) {
+            return null;
+        }
+
+        let currentNode = currentLinkedList.head;
+
+        while (currentNode !== null) {
+            if (currentNode.getValue() === value) {
+                return currentNode;
+            }
+
+            currentNode = currentNode.getNext();
+        }
+
+        return null;
+    }
+
     return LinkedList;
 })();
 
