@@ -10,6 +10,7 @@
         <script src="doublyLinkedList.js"></script>
         <script src="Queue.js"></script>
         ,<script src="Stack.js"></script>
+        |<script src="functionalPrograming.js"></script>
     </head>
     <body>
 
@@ -184,7 +185,7 @@ console.log(queue.dequeue());
 console.log(queue.dequeue());
 queue.enqueue(1);
 console.log(queue.isEmpty());*/
-
+/*
 console.log("---- stack");
 var stack = new StackPublic();
 stack.push(1);
@@ -196,8 +197,26 @@ console.log(stack.peek().getValue());
 console.log(stack.pop());
 console.log(stack.pop());
 stack.push(1);
-console.log(stack.isEmpty());
+console.log(stack.isEmpty());*/
 
+// fucntioan programing
+
+var a = new SomeClass(3);
+console.log(a.map(a => a*2));
+var obo = new Obo({
+    a: 3,
+    b: 4,
+})
+
+console.log(obo.map(k => k ));
+//console.log(obo.extend());
+
+uppercase = (string) => string.toUpperCase();
+getName = (person) => person.name;
+get6Characters = (string) => string.substring(0, 6);
+//console.log(pipe(getName, uppercase,get6Characters)({name: "ola"}) );
+
+console.log(average([1, 2, 3]));
 
 
     </script>
