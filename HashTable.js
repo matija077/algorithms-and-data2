@@ -1,11 +1,38 @@
 var HashTablePublic = (function() {
     var privateData = new WeakMap();
 
-    function HashTable(size = 4) {
+    function HashTable(slots = 4) {
         privateData.set(this, {
-            size: size,
-            buckets: Array(size).fill(null).map(() => new LinkedListPublic()),
+            slots: slots,
+            size: 3,
+            buckets: createEmptyBuckets(slots),
         });
+    }
+
+    function createEmptyBuckets(size) {
+        return Array(size).fill(null).map(() => new LinkedListPublic());
+    }
+
+    /*
+        in order to change buckets to new array reasign we need to pass the whole currrent
+        has table object
+    */
+    function rehash(currentHashTable) {
+        ({slots, size, buckets} = currentHashTable);
+
+        if (size/slots >= 0.75) {
+            function actualRehash() {
+                slots = slots * 2;
+                size = 0;
+                buckets = createEmptyBuckets(slots);
+            }
+
+            actualRehash();
+
+            currentHashTable.size = size;
+            currentHashTable.slots = slots;
+            currentHashTable.buckets = buckets;
+        }
     }
 
     /**
@@ -33,6 +60,9 @@ var HashTablePublic = (function() {
 
     HashTable.prototype.set = function(key, value) {
         var hashKey = this.hash(key);
+        rehash(privateData.get(this));
+        console.log(privateData.get(this).slots);
+        console.log(privateData.get(this).size);
 
 
 
