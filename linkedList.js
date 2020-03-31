@@ -114,6 +114,58 @@ var LinkedListPublic = (function() {
         return null;
     }
 
+    var IteratorResultPrivate = (function () {
+        var privateData = new WeakMap();
+
+        function IteratorResult(value = null) {
+            var done = value === null? true: false;
+
+            privateData.set(this, {
+                value: value,
+                done: done,
+            });
+        }
+
+        IteratorResult.prototype.getResult = function() {
+            return {
+                value: privateData.get(this).value,
+                done: privateData.get(this).done,
+            };
+        }
+
+        /*IteratorResult.prototype.setValue = function(value) {
+            var done = privateData.get(this).done;
+
+            done = done === true ? done : value === null ? true : done;
+
+            privateData.set(this, {
+                value: value,
+                done: done
+            });
+        }*/
+
+        return IteratorResult;
+    })();
+
+    LinkedList.prototype[Symbol.iterator] = function *() {
+        var head = privateData.get(this).head;
+        var result;
+
+        if (head === null) {
+            return new IteratorResultPrivate(null);
+        }
+
+        while(head !== null) {
+            result = new IteratorResultPrivate(head.getValue());
+
+            yield result.getResult();
+
+            head = head.getNext();
+        }
+
+        return new IteratorResultPrivate(null).getResult();
+    }
+
     return LinkedList;
 })();
 

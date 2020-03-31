@@ -4,7 +4,7 @@ var HashTablePublic = (function() {
     function HashTable(slots = 4) {
         privateData.set(this, {
             slots: slots,
-            size: 3,
+            size: 0,
             buckets: createEmptyBuckets(slots),
         });
     }
@@ -25,6 +25,16 @@ var HashTablePublic = (function() {
                 slots = slots * 2;
                 size = 0;
                 buckets = createEmptyBuckets(slots);
+            }
+
+            function actualRehashValues() {
+                var oldBuckets = currentHashTable.buckets;
+
+                oldBuckets.map(function(node, index) {
+
+
+                });
+
             }
 
             actualRehash();
