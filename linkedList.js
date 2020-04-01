@@ -94,7 +94,7 @@ var LinkedListPublic = (function() {
         return privateData.get(this).tail;
     }
 
-    LinkedList.prototype.find = function(value) {
+    LinkedList.prototype.find = function(value = null, callback = undefined) {
         var currentLinkedList = privateData.get(this);
 
         if (currentLinkedList.head === null) {
@@ -104,7 +104,9 @@ var LinkedListPublic = (function() {
         let currentNode = currentLinkedList.head;
 
         while (currentNode !== null) {
-            if (currentNode.getValue() === value) {
+            if (callback !== undefined && callback(currentNode.getValue())) {
+                return currentNode;
+            } else if (currentNode.getValue() === value) {
                 return currentNode;
             }
 

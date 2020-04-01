@@ -30,14 +30,13 @@ var HashTablePublic = (function() {
             function actualRehashValues() {
                 var oldBuckets = currentHashTable.buckets;
 
-                oldBuckets.map(function(node, index) {
-
-
+                oldBuckets.map(function(slot, index) {
+                    buckets[index] = slot;
                 });
-
             }
 
             actualRehash();
+            actualRehashValues();
 
             currentHashTable.size = size;
             currentHashTable.slots = slots;
@@ -63,23 +62,47 @@ var HashTablePublic = (function() {
             (value, char, index) =>
                 value + char.charCodeAt(0) * Math.pow(p, index)
             , 0);
+
         hashValue = hashValue % m;
 
-        return hashValue % this.getSize();
+        return hashValue % this.getSlots();
     }
 
     HashTable.prototype.set = function(key, value) {
         var hashKey = this.hash(key);
-        rehash(privateData.get(this));
+        var currentHashTable = privateData.get(this);
+
+        console.log(hashKey + " " + currentHashTable);
+
+        //rehash(currentHashTable);
+
+        let node = currentHashTable.buckets[hashKey].find(null,
+            (nodeValue) => nodeValue.key === key);
+
+            console.log(node);
+
+        const valueWrapper = {
+            key: key,
+            value: value,
+        };
+
+        if (node === null) {
+            currentHashTable.buckets[hashKey].append(valueWrapper);
+        } else {
+            valueWrapper.key = node.getValue().key;
+            node.setValue(valueWrapper);
+        }
+
+        for (node of currentHashTable.buckets[hashKey]) {
+            console.log(node.value);
+        }
+
         console.log(privateData.get(this).slots);
         console.log(privateData.get(this).size);
-
-
-
     }
 
-    HashTable.prototype.getSize = function() {
-        return privateData.get(this).size;
+    HashTable.prototype.getSlots = function() {
+        return privateData.get(this).slots;
     }
 
 
