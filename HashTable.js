@@ -6,6 +6,7 @@ var HashTablePublic = (function() {
             slots: slots,
             size: 0,
             buckets: createEmptyBuckets(slots),
+            keys: new Set(),
         });
     }
 
@@ -104,11 +105,17 @@ var HashTablePublic = (function() {
         }
 
         currentHashTable.size++;
+        currentHashTable.keys.add(key);
     }
 
     HashTable.prototype.delete = function(key) {
         var hashKey = this.hash(key);
         var currentHashTable = privateData.get(this);
+
+        // currentHashTable.keys.delete(key);
+
+        //currentHashTable.buckets[hashKey].delete(() => {return }));
+        currentHashTable.size--;
 
     }
 
@@ -124,6 +131,14 @@ var HashTablePublic = (function() {
 
     HashTable.prototype.getSlots = function() {
         return privateData.get(this).slots;
+    }
+
+    HashTable.prototype.has = function(key) {
+        return privateData.get(this).keys.has(key);
+    }
+
+    HashTable.prototype.keys = function() {
+        return Array.from(privateData.get(this).keys);
     }
 
     HashTable.prototype[Symbol.iterator]= function * () {
