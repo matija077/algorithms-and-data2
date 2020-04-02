@@ -11,6 +11,7 @@
         <script src="Queue.js"></script>
         ,<script src="Stack.js"></script>
         <script src="HashTable.js"></script>
+        <script src="iteratorResult.js"></script>
         |<script src="functionalPrograming.js"></script>
     </head>
     <body>
@@ -229,7 +230,7 @@ console.log(average([1, 2, 3]));*/
 
 
 // HashTable
-console.log("----");
+console.log("---- hahsTbale");
 var hashTable = new HashTablePublic(4);
 //console.log(hashTable.hash("abcd"));
 hashTable.set("a", 2);
@@ -238,6 +239,9 @@ hashTable.set("c", 2);
 hashTable.set("ab", 2);
 hashTable.set("c", 6);
 hashTable.set("abc", "abc");
+for (item of hashTable) {
+    console.log(`key ${item.value.key}: value ${item.value.value}`);
+}
 
 
     </script>
