@@ -82,7 +82,7 @@ var HashTablePublic = (function() {
 
         //console.log(currentHashTable);
 
-        //toRehash && rehash.call(this, currentHashTable);
+        toRehash && rehash.call(this, currentHashTable);
 
         /*for (value of this) {
             console.log(value.value);
@@ -104,6 +104,22 @@ var HashTablePublic = (function() {
         }
 
         currentHashTable.size++;
+    }
+
+    HashTable.prototype.delete = function(key) {
+        var hashKey = this.hash(key);
+        var currentHashTable = privateData.get(this);
+
+    }
+
+    HashTable.prototype.get = function(key) {
+        var hashKey = this.hash(key);
+        var currentHashTable = privateData.get(this);
+
+        const node = currentHashTable.buckets[hashKey].find(null,
+            (valueObject) => valueObject.key === key);
+
+        return node !== null ? node.getValue().value: null;
     }
 
     HashTable.prototype.getSlots = function() {
