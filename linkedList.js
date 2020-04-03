@@ -59,6 +59,8 @@ var LinkedListPublic = (function() {
             return found;
         }
 
+        console.log(callback);
+
         /*if (currentLinkedList.head.getNext() === null) {
             currentLinkedList.head = currentLinkedList.tail = null;
             return true;
