@@ -86,6 +86,12 @@ var LinkedListPublic = (function() {
             }
         }
 
+        /**
+         * we always set next. if next is null its the last elmeent. if not we set correctly
+         * wihtotu tail adn head we have 2 cases here. 1) onlye one, first 2) middle, last
+         * with tail adn head, midle is set. first if -> last
+         * second if -> first part is first and onlye one if inside -> first and last.
+         */
         if (found) {
             currentNode.setNext(nextNode.getNext());
             if (nextNode.getNext() === null) {
@@ -96,6 +102,9 @@ var LinkedListPublic = (function() {
             }*/
             if (found && firstPass) {
                 currentLinkedList.head = currentNode.getNext();
+                if (nextNode.getNext() === null) {
+                    currentLinkedList.tail = currentNode.getNext();
+                }
             }
         }
 
