@@ -48,23 +48,33 @@ var LinkedListPublic = (function() {
         currentLinkedList.head = newNode;
     }
 
-    LinkedList.prototype.delete = function(value) {
+    /**
+     * has to be able to provide true for deltee and callback
+     */
+    LinkedList.prototype.delete = function(value, callback = undefined) {
         var currentLinkedList = privateData.get(this);
+        var found = false;
 
         if (currentLinkedList.head === null){
-            return;
+            return found;
         }
 
-        if (currentLinkedList.head.getNext() === null) {
+        /*if (currentLinkedList.head.getNext() === null) {
             currentLinkedList.head = currentLinkedList.tail = null;
-            return;
-        }
+            return true;
+        }*/
 
         let currentNode = currentLinkedList.head;
         let nextNode = currentNode;
         let firstPass = true;
 
-        while(nextNode.getValue() !== value && nextNode.getNext() !== null) {
+        while(nextNode !== null) {
+            if ((callback && callback(nextNode.getValue())) ||
+            nextNode.getValue() === value) {
+                found = true;
+                break;
+            }
+
             if (firstPass) {
                 nextNode = currentNode.getNext();
                 firstPass = false;
@@ -74,15 +84,20 @@ var LinkedListPublic = (function() {
             }
         }
 
-        if (nextNode.getValue() === value) {
+        if (found) {
             currentNode.setNext(nextNode.getNext());
             if (nextNode.getNext() === null) {
                 currentLinkedList.tail = currentNode;
             }
-            if (currentLinkedList.head.getValue() === value) {
+            /*if (currentLinkedList.head.getValue() === value) {
+                currentLinkedList.head = currentNode.getNext();
+            }*/
+            if (found && firstPass) {
                 currentLinkedList.head = currentNode.getNext();
             }
         }
+
+        return found;
     }
 
     LinkedList.prototype.getHead = function() {
