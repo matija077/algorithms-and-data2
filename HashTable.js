@@ -47,7 +47,7 @@ var HashTablePublic = (function() {
 
                 oldBuckets.map((linkedList) => {
                     var node = linkedList.getHead();
-                    //console.log(node);
+                    console.log(node);
 
                     while(node !== null) {
                         const {key, value} = node.getValue();
@@ -87,12 +87,13 @@ var HashTablePublic = (function() {
     }
 
     HashTable.prototype.set = function(key, value, toRehash = true) {
-        var hashKey = this.hash(key);
         var currentHashTable = privateData.get(this);
 
-        //console.log(hashKey + " " + key + " " + value);
-
         toRehash && rehash.call(this, currentHashTable);
+
+        let hashKey = this.hash(key);
+
+        console.log(hashKey + " " + key + " " + value + this.getSlots());
 
         console.log(JSON.stringify(currentHashTable, null, 4));
 
@@ -132,6 +133,8 @@ var HashTablePublic = (function() {
             currentHashTable.keys.delete(key);
             currentHashTable.size--;
         }
+
+        console.log(currentHashTable);
 
         return deleted
     }
