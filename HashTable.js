@@ -81,7 +81,7 @@ var HashTablePublic = (function() {
         var hashKey = this.hash(key);
         var currentHashTable = privateData.get(this);
 
-        //console.log(currentHashTable);
+        //console.log(hashKey + " " + key + " " + value);
 
         toRehash && rehash.call(this, currentHashTable);
 
@@ -112,11 +112,18 @@ var HashTablePublic = (function() {
         var hashKey = this.hash(key);
         var currentHashTable = privateData.get(this);
 
-        // currentHashTable.keys.delete(key);
+        console.log(hashKey);
 
-        //currentHashTable.buckets[hashKey].delete(() => {return }));
-        currentHashTable.size--;
+        const deleted = currentHashTable.buckets[hashKey].delete(
+            null, (valueObject) => {console.log(valueObject + "abcsad " + key ); return valueObject.key === key;}
+        );
 
+        if (deleted) {
+            currentHashTable.keys.delete(key);
+            currentHashTable.size--;
+        }
+
+        return deleted
     }
 
     HashTable.prototype.get = function(key) {

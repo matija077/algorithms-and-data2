@@ -61,9 +61,19 @@ function trace(label) {
 }
 
 {
-    const composeM = chainMethod => (...ms) => (
-      ms.reduce((f, g) => x => g(x)[chainMethod](f))
-    );
+    const composeM = function (chainMethod) {
+        return function(...ms) {
+            console.log(`chain ${chainMethod} ms ${ms}`);
+            return ms.reduce(
+                function(f,g) {
+                    console.log(`f:  ${f} g: ${g} `);
+                    return function(x) {
+                        return g(x)[chainMethod](f);
+                    }
+                }
+            );
+        }
+    };
 
     const composePromises = composeM('then');
 
@@ -76,9 +86,10 @@ function trace(label) {
     ;
 
     // b => Promise(c)
-    const hasPermission = ({ role }) => (
-      Promise.resolve(role === 'Author')
-    );
+    const hasPermission = ({ role }) => {
+        console.log(role);
+        return Promise.resolve(role === 'Author')
+    };
 
     // Compose the functions (this works!)
     const authUser = composePromises(hasPermission, getUserById);
