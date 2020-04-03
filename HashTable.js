@@ -43,7 +43,7 @@ var HashTablePublic = (function() {
                 currentHashTable.size = size;
                 currentHashTable.buckets = buckets;
 
-                console.log({currentHashTable});
+                console.log(JSON.stringify(currentHashTable, null, 4));
 
                 oldBuckets.map((linkedList) => {
                     var node = linkedList.getHead();
@@ -94,7 +94,7 @@ var HashTablePublic = (function() {
 
         toRehash && rehash.call(this, currentHashTable);
 
-        console.log({currentHashTable});
+        console.log(JSON.stringify(currentHashTable, null, 4));
 
         /*for (value of this) {
             console.log(value.value);
@@ -110,20 +110,19 @@ var HashTablePublic = (function() {
 
         if (node === null) {
             currentHashTable.buckets[hashKey].append(valueWrapper);
+            currentHashTable.size++;
+            currentHashTable.keys.add(key);
         } else {
             valueWrapper.key = node.getValue().key;
             node.setValue(valueWrapper);
         }
-
-        currentHashTable.size++;
-        currentHashTable.keys.add(key);
     }
 
     HashTable.prototype.delete = function(key) {
         var hashKey = this.hash(key);
         var currentHashTable = privateData.get(this);
 
-        console.log(hashKey);
+        console.log(currentHashTable.buckets[hashKey].getHead());
 
         const deleted = currentHashTable.buckets[hashKey].delete(
             null, (valueObject) => {console.log(valueObject + "abcsad " + key ); return valueObject.key === key;}
