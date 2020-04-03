@@ -162,6 +162,8 @@ linkedListDelete.append(4);
 linkedListDelete.append(5);
 linkedListDelete.delete(5);
 
+console.log("provjera", linkedListDelete.getHead(), linkedListDelete.getTail());
+
 {
     let node = linkedListDelete.getHead();
     while(node !== null) {
@@ -240,7 +242,7 @@ hashTable.set("ab", 2);
 hashTable.set("c", 6);
 hashTable.set("abc", "abc");
 
-console.log(hashTable.delete("ab"));
+console.log(hashTable.delete("b"));
 
 for (item of hashTable) {
     console.log(`key ${item.value.key}: value ${item.value.value}`);

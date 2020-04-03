@@ -15,8 +15,13 @@ var HashTablePublic = (function() {
     }
 
     /*
-        in order to change buckets to new array reasign we need to pass the whole currrent
-        has table object
+        in order to change buckets to new array reasign, slots and size change
+         we need to pass the whole currrenthashtable object
+         we use wrapper to not to compile all the code if we dont need ot rehash
+
+         this is used because we need reference to set all nodes using set
+
+
     */
     function rehash(currentHashTable) {
         ({slots, size, buckets} = currentHashTable);
@@ -27,6 +32,9 @@ var HashTablePublic = (function() {
 
         rehashWrapper.call(this);
 
+        /**
+         * change values of our hashTable objects.
+         */
         function rehashWrapper() {
             function actualRehash() {
                     slots = slots * 2;
@@ -34,6 +42,10 @@ var HashTablePublic = (function() {
                     buckets = createEmptyBuckets(slots);
             }
 
+            /**
+             * we need to save the reference to old buckets to iterate over them
+             * and setting to new loactions
+             */
             function actualRehashValues() {
                 var oldBuckets = currentHashTable.buckets;
 
@@ -43,11 +55,11 @@ var HashTablePublic = (function() {
                 currentHashTable.size = size;
                 currentHashTable.buckets = buckets;
 
-                console.log(JSON.stringify(currentHashTable, null, 4));
+                //console.log(JSON.stringify(currentHashTable, null, 4));
 
                 oldBuckets.map((linkedList) => {
                     var node = linkedList.getHead();
-                    console.log(node);
+                    //console.log(node);
 
                     while(node !== null) {
                         const {key, value} = node.getValue();
@@ -86,6 +98,19 @@ var HashTablePublic = (function() {
         return hashValue % this.getSlots();
     }
 
+    /**
+     * toRehash is used when using set itnernaly when we are setting from rehash
+     *
+     * hashKey must be computed after rehashing othwerwise the value then triggered
+     * rehash will have wrong hashkey(old one).
+     *
+     * 2 possibiltires, either key already exists so we udpate the value
+     * or it's new so we appned to correct linkedList
+     *
+     * keys is of Set type so it can be after everything but we change size
+     * only when adding new not updatign existing, so for consistency we put it
+     * in if
+     */
     HashTable.prototype.set = function(key, value, toRehash = true) {
         var currentHashTable = privateData.get(this);
 
@@ -93,9 +118,9 @@ var HashTablePublic = (function() {
 
         let hashKey = this.hash(key);
 
-        console.log(hashKey + " " + key + " " + value + this.getSlots());
+        //console.log(hashKey + " " + key + " " + value + this.getSlots());
 
-        console.log(JSON.stringify(currentHashTable, null, 4));
+        //console.log(JSON.stringify(currentHashTable, null, 4));
 
         /*for (value of this) {
             console.log(value.value);
@@ -119,22 +144,24 @@ var HashTablePublic = (function() {
         }
     }
 
+    /**
+     * we delete using callback for key and return true if deleted
+     */
     HashTable.prototype.delete = function(key) {
         var hashKey = this.hash(key);
         var currentHashTable = privateData.get(this);
 
-        console.log(currentHashTable.buckets[hashKey].getHead());
+        //console.log(currentHashTable.buckets[hashKey].getHead());
 
         const deleted = currentHashTable.buckets[hashKey].delete(
-            null, (valueObject) => {console.log(valueObject + "abcsad " + key ); return valueObject.key === key;}
+            null, (valueObject) => {//console.log(valueObject + "abcsad " + key );
+            return valueObject.key === key;}
         );
 
         if (deleted) {
             currentHashTable.keys.delete(key);
             currentHashTable.size--;
         }
-
-        console.log(currentHashTable);
 
         return deleted
     }
@@ -164,7 +191,7 @@ var HashTablePublic = (function() {
     HashTable.prototype[Symbol.iterator]= function * () {
         var currentHashTable = privateData.get(this);
 
-        console.log(currentHashTable);
+        //console.log(currentHashTable);
 
         if (currentHashTable.size === 0) {
             return new IteratorResultPublic(null).getResult();
