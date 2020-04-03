@@ -21,16 +21,29 @@ var HashTablePublic = (function() {
     function rehash(currentHashTable) {
         ({slots, size, buckets} = currentHashTable);
 
-        if (size/slots >= 0.75) {
+        if (size/slots < 0.75) {
+            return;
+        }
+
+        rehashWrapper.call(this);
+
+        function rehashWrapper() {
             function actualRehash() {
-                slots = slots * 2;
-                size = 0;
-                buckets = createEmptyBuckets(slots);
+                    slots = slots * 2;
+                    size = 0;
+                    buckets = createEmptyBuckets(slots);
             }
 
             function actualRehashValues() {
                 var oldBuckets = currentHashTable.buckets;
+
+                actualRehash();
+
+                currentHashTable.slots = slots;
+                currentHashTable.size = size;
                 currentHashTable.buckets = buckets;
+
+                console.log({currentHashTable});
 
                 oldBuckets.map((linkedList) => {
                     var node = linkedList.getHead();
@@ -45,11 +58,7 @@ var HashTablePublic = (function() {
                 });
             }
 
-            actualRehash();
             actualRehashValues.call(this);
-
-            currentHashTable.size = size;
-            currentHashTable.slots = slots;
         }
     }
 
@@ -84,6 +93,8 @@ var HashTablePublic = (function() {
         //console.log(hashKey + " " + key + " " + value);
 
         toRehash && rehash.call(this, currentHashTable);
+
+        console.log({currentHashTable});
 
         /*for (value of this) {
             console.log(value.value);
@@ -150,6 +161,8 @@ var HashTablePublic = (function() {
 
     HashTable.prototype[Symbol.iterator]= function * () {
         var currentHashTable = privateData.get(this);
+
+        console.log(currentHashTable);
 
         if (currentHashTable.size === 0) {
             return new IteratorResultPublic(null).getResult();

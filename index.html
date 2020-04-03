@@ -239,6 +239,9 @@ hashTable.set("c", 2);
 hashTable.set("ab", 2);
 hashTable.set("c", 6);
 hashTable.set("abc", "abc");
+
+//console.log(hashTable.delete("ab"));
+
 for (item of hashTable) {
     console.log(`key ${item.value.key}: value ${item.value.value}`);
 }
@@ -247,6 +250,8 @@ console.log(hashTable.getSlots());
 console.log(hashTable.get('a'));
 console.log(hashTable.keys());
 console.log(hashTable.has("abd"));
+
+
 
 
     </script>
