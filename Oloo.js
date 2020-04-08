@@ -14,6 +14,7 @@ var delagation;
         Foo.call(this, who);
     }
     Bar.prototype = Object.create(Foo.prototype);
+    Bar.prototype.constructor = Bar;
 
     Bar.prototype.speak = function() {
         console.log.call(this, "Hello " + this.identify() + ".");

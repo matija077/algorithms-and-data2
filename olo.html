@@ -24,6 +24,8 @@
             var b1I = new inheritance("bar");
             b1I.speak();
             console.log(b1I);
+            var b2I = new b1I.constructor("childBar");
+            b2I.speak();
 
             //console.log(delagation);
             var b1D = Object.create(delagation);
