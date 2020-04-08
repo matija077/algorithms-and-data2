@@ -1,0 +1,23 @@
+<html>
+    <head>
+
+    </head>
+
+    <body>
+
+    </body>
+
+    <script>
+        var inheritance;
+        var delagation;
+
+        import('./Oloo.js').then(
+            function(result) {
+                inheritance = result.inheritance;
+                delagation = result.delagation;
+                console.log(inheritance);
+        },  function(error) {
+                throw new Error(error);
+        });
+    </script>
+</html>
