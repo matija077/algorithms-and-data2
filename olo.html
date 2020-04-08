@@ -15,9 +15,15 @@
             function(result) {
                 inheritance = result.inheritance;
                 delagation = result.delagation;
-                console.log(inheritance);
+                loaded();
         },  function(error) {
                 throw new Error(error);
         });
+
+        function loaded() {
+            var b1I = new inheritance("bar");
+            b1I.speak();
+            console.log(b1I);
+        }
     </script>
 </html>
