@@ -13,6 +13,7 @@
         <script src="HashTable.js"></script>
         <script src="iteratorResult.js"></script>
         |<script src="functionalPrograming.js"></script>
+        <script src="tree/TreeNode.js"></script>
     </head>
     <body>
 
@@ -253,6 +254,26 @@ console.log(hashTable.get('a'));
 console.log(hashTable.keys());
 console.log(hashTable.has("abd"));
 
+
+var counterPromise = import('./libcoutner.js').then(function(result) {
+    counter = result;
+    console.log("counter", counter);
+    doWork();
+});
+
+var counter;
+
+
+function doWork() {
+    counter.increment();
+    console.log(counter.counter);
+    console.log(++counter.counter);
+}
+
+// tree
+console.log('---- treee');
+
+var treeNode = new TreeNodePublic();
 
 
 
