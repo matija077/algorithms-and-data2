@@ -24,6 +24,22 @@ var delagation;
 
 {
 
+    var Foo = {
+        init(who) {
+            this.me = who;
+        },
+        identify()  {
+            return "I am " + this.me;
+        }
+    };
+
+    var Bar = Object.create(Foo);
+
+    Bar.speak = function() {
+        console.log.call(this, "Hello " + this.identify() + ".");
+    }
+
+    delagation = Bar;
 }
 
 export {inheritance, delagation};

@@ -24,6 +24,12 @@
             var b1I = new inheritance("bar");
             b1I.speak();
             console.log(b1I);
+
+            //console.log(delagation);
+            var b1D = Object.create(delagation);
+            b1D.init("bar");
+            b1D.speak();
+            console.log(b1D);
         }
     </script>
 </html>
