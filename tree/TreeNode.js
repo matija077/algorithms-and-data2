@@ -12,42 +12,43 @@ var TreeNodePublic = (function() {
 
     function getPrivateData(object) {
         return object.privateData.get(object);
-
     }
 
-    TreeNode.prototype.getValue() = function() {
+    TreeNode.prototype.getValue = function() {
         return privateData.get(this).value;
     }
 
-    TreeNode.prototype.getParent() = function() {
+    TreeNode.prototype.getParent = function() {
         return privateData.get(this).parent;
     }
 
-    TreeNode.prototype.getLeft() = function() {
+    TreeNode.prototype.getLeft = function() {
         return privateData.get(this).left;
     }
 
-    TreeNode.prototype.getRight() = function() {
+    TreeNode.prototype.getRight = function() {
         return privateData.get(this).right;
     }
 
-    TreeNode.prototype.setValue() = function(value) {
+    TreeNode.prototype.setValue = function(value) {
         privateData.get(this).value = value;
     }
 
-    TreeNode.prototype.setLeft() = function(treeNode) {
+    TreeNode.prototype.setLeft = function(treeNode) {
         privateData.get(this).left = treeNode;
         treeNode.setParent(this);
     }
 
-    TreeNode.prototype.setRight() = function(treeNode) {
-        privateData.get(this).right = right;
+    TreeNode.prototype.setRight = function(treeNode) {
+        privateData.get(this).right = treeNode;
         treeNode.setParent(this);
     }
 
-    TreeNode.prototype.setParent() = function(treeNode) {
+    TreeNode.prototype.setParent = function(treeNode) {
         privateData.get(this).parent = treeNode;
     }
 
     return TreeNode;
-})();
+})()
+
+//export {TreeNodePublic};

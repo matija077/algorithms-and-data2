@@ -14,6 +14,7 @@
         <script src="iteratorResult.js"></script>
         |<script src="functionalPrograming.js"></script>
         <script src="tree/TreeNode.js"></script>
+        <script  src="tree/BinarySearchTree.js"></script>
     </head>
     <body>
 
@@ -157,7 +158,7 @@ linkedListDelete.delete(2);*/
 linkedListDelete.append(3);
 linkedListDelete.delete(3);*/
 
-linkedListDelete.append(2);
+/*linkedListDelete.append(2);
 linkedListDelete.append(3);
 linkedListDelete.append(4);
 linkedListDelete.append(5);
@@ -180,7 +181,7 @@ console.log(linkedListDelete.find(3));
 console.log("here goes nothing ");
 for (node of linkedListDelete) {
     console.log(node);
-}
+}*/
 
 /*var doubleLinkedList = new DoublyLinkedListPublic();
 doubleLinkedList.append("e");*/
@@ -233,7 +234,7 @@ console.log(average([1, 2, 3]));*/
 
 
 // HashTable
-console.log("---- hahsTbale");
+/*console.log("---- hahsTbale");
 var hashTable = new HashTablePublic(4);
 //console.log(hashTable.hash("abcd"));
 hashTable.set("a", 2);
@@ -252,10 +253,10 @@ console.log(hashTable.getSlots());
 
 console.log(hashTable.get('a'));
 console.log(hashTable.keys());
-console.log(hashTable.has("abd"));
+console.log(hashTable.has("abd"));*/
 
-
-var counterPromise = import('./libcoutner.js').then(function(result) {
+// part of moudles
+/*var counterPromise = import('./libcoutner.js').then(function(result) {
     counter = result;
     console.log("counter", counter);
     doWork();
@@ -268,12 +269,24 @@ function doWork() {
     counter.increment();
     console.log(counter.counter);
     console.log(++counter.counter);
-}
+}*/
 
 // tree
 console.log('---- treee');
 
-var treeNode = new TreeNodePublic();
+var treeNodeParent = new TreeNodePublic();
+var treeNodeLeft = new TreeNodePublic(2);
+var treeNodeRight = new TreeNodePublic(3);
+
+treeNodeParent.setLeft(treeNodeLeft);
+treeNodeParent.setRight(treeNodeRight);
+
+treeNodeParent.setValue(0);
+
+console.log(treeNodeParent.getLeft().getValue());
+console.log(treeNodeRight.getParent().getValue());
+//console.log(BinarySearchTreePublic);
+//var bST = new BinarySearchTreePublic();
 
 
 
