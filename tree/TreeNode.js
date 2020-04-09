@@ -10,6 +10,10 @@ var TreeNodePublic = (function() {
         });
     }
 
+    function getPrivateData(object) {
+        return object.privateData.get(object);
+
+    }
 
     TreeNode.prototype.getValue() = function() {
         return privateData.get(this).value;
@@ -31,16 +35,18 @@ var TreeNodePublic = (function() {
         privateData.get(this).value = value;
     }
 
-    TreeNode.prototype.setLeft() = function(left) {
-        privateData.get(this).left = left;
+    TreeNode.prototype.setLeft() = function(treeNode) {
+        privateData.get(this).left = treeNode;
+        treeNode.setParent(this);
     }
 
-    TreeNode.prototype.setRight() = function(right) {
+    TreeNode.prototype.setRight() = function(treeNode) {
         privateData.get(this).right = right;
+        treeNode.setParent(this);
     }
 
-    TreeNode.prototype.setParent() = function(parent) {
-        privateData.get(this).parent = parent;
+    TreeNode.prototype.setParent() = function(treeNode) {
+        privateData.get(this).parent = treeNode;
     }
 
     return TreeNode;
