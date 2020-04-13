@@ -13,13 +13,17 @@
         <script src="HashTable.js"></script>
         <script src="iteratorResult.js"></script>
         |<script src="functionalPrograming.js"></script>
-        <script src="tree/TreeNode.js"></script>
-        <script  src="tree/BinarySearchTree.js"></script>
+        <!--script src="tree/TreeNode.js"></script>-->
+        <!--<script  src="tree/BinarySearchTree.js"></script>-->
     </head>
     <body>
-
     </body>
     <script>
+        window.addEventListener("DOMContentLoaded", (event) =>
+        console.log("DOMContentLoaded"));
+
+        window.addEventListener("load", (event) =>
+        console.log("loaded"));
 
 /*
         function a() {
@@ -274,7 +278,7 @@ function doWork() {
 // tree
 console.log('---- treee');
 
-var treeNodeParent = new TreeNodePublic();
+/*var treeNodeParent = new TreeNodePublic();
 var treeNodeLeft = new TreeNodePublic(2);
 var treeNodeRight = new TreeNodePublic(3);
 
@@ -284,8 +288,30 @@ treeNodeParent.setRight(treeNodeRight);
 treeNodeParent.setValue(0);
 
 console.log(treeNodeParent.getLeft().getValue());
-console.log(treeNodeRight.getParent().getValue());
+console.log(treeNodeRight.getParent().getValue());*/
+Promise.all(new Array(import ('./tree/BinarySearchTree.js'), import ('./tree/TreeNode.js')))
+.then(function(resultArray) {
+    var BinarySearchTreePublic =  resultArray[0].BinarySearchTreePublic;
+    var TreeNodePublic =  resultArray[1].TreeNodePublic;
+
+    console.log(resultArray);
+
+    var bst = new BinarySearchTreePublic();
+    //var root = new TreeNodePublic(3);
+    bst.add(4);
+    bst.add(2);
+    bst.add(1);
+    bst.add(3);
+    let root = bst.getRoot();
+    console.log(root.getLeft().getRight().getValue());
+});
+/*import ('./tree/BinarySearchTree.js').then(function(result) {
+    console.log(result);
+    var bst = new result.BinarySearchTreePublic();
+    console.log(bst.getRoot());
+});*/
 //console.log(BinarySearchTreePublic);
+//console.log(ala);
 //var bST = new BinarySearchTreePublic();
 
 

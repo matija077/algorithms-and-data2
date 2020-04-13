@@ -51,4 +51,4 @@ var TreeNodePublic = (function() {
     return TreeNode;
 })()
 
-//export {TreeNodePublic};
+export {TreeNodePublic};
