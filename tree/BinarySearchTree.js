@@ -33,6 +33,16 @@ function createClosure() {
             return privateData.get(this).root;
         }
 
+        /**
+         * we need to create new node, find apropriate position, check if node with
+         * that value already exist. if not then connect and icnrease size.
+         *
+         * we check for existign node using {calculateValuePosition}. if it's null we know ndoe exists.
+         * and we return
+         * we use {getNextNode} to fetch next node.
+         * if does not exisst we use {connectNode} and {increaseSize}
+         * @param {any} value
+         */
         BinarySearchTree.prototype.add = function(value) {
             var treeNode = new TreeNodePublic(value);
 
@@ -65,6 +75,12 @@ function createClosure() {
             increaseSize(this);
         }
 
+        /**
+         * based on whether the value is smaller or greater connect nodes.
+         * @param {TreeNode} currentNode -
+         * @param {TreeNode} newNode -
+         * @param {Enum: {true, false, null}} smaller
+         */
         function connectNode(currentNode, newNode, smaller) {
             if (smaller) {
                 currentNode.setLeft(newNode);
@@ -73,10 +89,23 @@ function createClosure() {
             }
         }
 
+        /**
+         * based on whetehr the value is smallor greater get next Node
+         * @param {Touple: {true, false, null}}} smaller
+         * @param {TreeNode} treeNode
+         */
         function getNextNode(smaller, treeNode) {
             return smaller === true ? treeNode.getLeft() : treeNode.getRight();
         }
 
+        /**
+         * based on difference between values of two nodes return wheter or not
+         * value is samller or bigger than existingValue.  if it is the same return null
+         * if it is undefined some errror occured in the check
+         * @param {any} value
+         * @param {any} existingValue
+         * @returns Enum: {true, false, null}}
+         */
         function calculateValuePosition(value, existingValue) {
             var smaller;
 
@@ -95,10 +124,20 @@ function createClosure() {
             return smaller;
         }
 
+        /**
+         * increase size of given BinarySearchTree
+         * @param {BinarySearchTree} bst
+         */
         function increaseSize(bst) {
             privateData.get(bst).size++;
         }
 
+        /**
+         * based on {calculateValuePosition} if return is null value provided
+         * is the same as the one in the tree.
+         * @param {any} value
+         * @returns {Boolean}
+         */
         BinarySearchTree.prototype.contains = function(value) {
             var exists;
             var treeNode = this.getRoot();
