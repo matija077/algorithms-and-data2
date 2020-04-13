@@ -304,6 +304,7 @@ Promise.all(new Array(import ('./tree/BinarySearchTree.js'), import ('./tree/Tre
     bst.add(3);
     let root = bst.getRoot();
     console.log(root.getLeft().getRight().getValue());
+    console.log(bst.contains(2));
 });
 /*import ('./tree/BinarySearchTree.js').then(function(result) {
     console.log(result);

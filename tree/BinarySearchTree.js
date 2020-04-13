@@ -99,6 +99,26 @@ function createClosure() {
             privateData.get(bst).size++;
         }
 
+        BinarySearchTree.prototype.contains = function(value) {
+            var exists;
+            var treeNode = this.getRoot();
+
+            while(treeNode !== null) {
+                exists = calculateValuePosition(value, treeNode.getValue());
+                if (exists === null) {
+                    return true;
+                }
+
+                treeNode = getNextNode(exists, treeNode);
+            }
+
+            return false;
+        }
+
+        BinarySearchTree.prototype.remove = function(value) {
+
+        }
+
         return BinarySearchTree;
     })();
 }
