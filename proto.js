@@ -1,4 +1,5 @@
 function parent() {
+    this.parentProperty = "a";
 }
 
 parent.prototype.render =  function render() {
@@ -6,10 +7,12 @@ parent.prototype.render =  function render() {
 }
 
 function child() {
+    parent.call(this);
 
+    this.childProperty = "b";
 }
-//Object.setPrototypeOf(child, parent);
-child.prototype = new parent();
+Object.setPrototypeOf(child, parent);
+child.prototype = Object.create(parent.prototype);
 child.prototype.constructor = child;
 
 child.prototype.play = function play(val) {

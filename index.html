@@ -333,9 +333,9 @@ import('./proto.js').then(function(result) {
     ({parent ,child} = result);
     console.log(child);
     var instance = new result.child();
-    console.dir(JSON.parse(JSON.stringify(
-        instance.__proto__.)));
-    //console.dir(instance);
+    //console.dir(JSON.parse(JSON.stringify(
+        //instance.__proto__.)));
+    console.dir(instance);
     console.log("change child prototype");
     setTimeout(1000);
     child.prototype.see = function see() {};
