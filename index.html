@@ -13,6 +13,7 @@
         <script src="HashTable.js"></script>
         <script src="iteratorResult.js"></script>
         |<script src="functionalPrograming.js"></script>
+        <!--script type=module src="class.js"></script>-->
         <!--script src="tree/TreeNode.js"></script>-->
         <!--<script  src="tree/BinarySearchTree.js"></script>-->
     </head>
@@ -314,6 +315,34 @@ Promise.all(new Array(import ('./tree/BinarySearchTree.js'), import ('./tree/Tre
 //console.log(BinarySearchTreePublic);
 //console.log(ala);
 //var bST = new BinarySearchTreePublic();
+
+
+
+import('./class.js').then(function(result) {
+    console.log("soem calsses here ------");
+    ({parent ,child} = result);
+    console.log(child);
+    var instance = new result.child();
+    console.log(instance);
+    console.log("end calsses here ------");
+});
+
+
+import('./proto.js').then(function(result) {
+    console.log("soem prototypes here ------");
+    ({parent ,child} = result);
+    console.log(child);
+    var instance = new result.child();
+    console.dir(JSON.parse(JSON.stringify(
+        instance.__proto__.)));
+    //console.dir(instance);
+    console.log("change child prototype");
+    setTimeout(1000);
+    child.prototype.see = function see() {};
+    //console.log(JSON.parse(JSON.stringify(instance)));
+    console.dir(instance);
+    console.log("end prototypes here ------");
+});
 
 
 
