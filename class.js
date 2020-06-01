@@ -17,6 +17,12 @@ class child extends parent {
 
     play(val) {
         console.log(val);
+        let that = this;
+        return (
+            {
+                value: this,
+            }
+        );
     }
 };
 
